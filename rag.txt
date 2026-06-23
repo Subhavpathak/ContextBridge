@@ -1,0 +1,55 @@
+RAG- Retreival Augmented Generation is the process of optimising the output of large language model,
+so it references an authoritative knowledge base outside of its training data sources before genrating response.
+LLMs are trained on vast volumes of data and use billions of parameters to generate original output for tasks like
+answering questions translating languages and completing sentences. RAG extends the already 
+powerful capabilities of LLMs to specific or an organisation internal knowledege base all without the need to retrain the model.
+It is a cost effective approach to improving LLM output so it remains relevant accurate and useful in various context.
+
+
+//LLMs suffers from the problem of hallucination.
+//also lets say we want to update our model regularly with new policies
+//we can't fine tune it everyday.
+
+
+ ________________________
+|                        |
+|                        |
+|        LLM             |  ------->  |Vector database|(knowldege base)
+|                        |                      |
+|                        |                      | (Data Ingestion Pipeline)
+|                        |               (Parsing,embedding) [embedding models converts text to vectors]
+|________________________|                    Data(pdf,html,excel)
+     |
+     |
+     | Context(from vector DB )+ prompt --> output
+     |
+     |
+   Query
+
+
+Basically there are 2 pipelines invlolved 
+1.Data Ingestion Pipeline (Data inges+data parsing+embedding)
+  User query and retriever+vector store
+2.Retrieval Pipeline (LLM+output)
+
+So when user asks query , retriever provides context to LLM from vector DB which is given as output to the user.
+
+
+1. Data Ingestion pipeline
+
+Data(in the form of pdfs,html,excel,db) in broken in chunks 
+
+chunking is required because we cannot have data more than context size to be converted to embeddings
+because for every LLM we have fixed context size 
+
+then embeddings will be stored in vector DB and then we can easily do similarity search
+
+
+
+
+
+
+
+
+
+
