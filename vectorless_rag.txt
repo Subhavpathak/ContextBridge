@@ -36,12 +36,27 @@ A chunk about "market conditions " may score higher than the actual
 answer section just because is shares more words with the query
 
 
+JSON tree can be saved anywhere file-systems,S3 bucket or mongodb etc 
+
+Traditional RAG strengths:
+massive scale, mature ecosystem, cheap retrieval (ANN search per query)
+great for factoids and domain agnostic(any text)
+
+Weakness: chunking destroys context, similarity!=relevance
+no cross-section reasoning , hard to explain and embedding drift (depends on model)
+
+hard to explain? why was chunk chosen 
 
 
+Vectorless RAG:
+strength: preserves document context
+cross section reasoning , explainable retrieval
+no embedding pipeline
 
+Weakness: high per query cost higher latency doesnt scale to millions 
+needs structued docs 
 
-
-
+use Traditional RAG for massive heterogeneous corpora and lower latency requirments 
 
 
 
