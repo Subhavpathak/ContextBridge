@@ -1,0 +1,52 @@
+Traditional vector-based RAG relies on semantic similarity rather than true relevance.
+But similarity ≠ relevance — what we truly need in retrieval is relevance, and that requires reasoning. 
+When working with professional documents that demand contextual understanding, domain expertise, and multi-step reasoning, similarity search often falls short — missing what's relevant but not similar, and returning what's similar yet not relevant.
+
+Inspired by AlphaGo, we have PageIndex — a vectorless, reasoning-based RAG system that builds a hierarchical tree index from long documents, and uses LLMs to reason over that index for agentic, context-aware retrieval.
+The retrieval is traceable and explainable, with no vector DBs or chunking. 
+PageIndex simulates how human experts navigate and extract knowledge from complex documents through tree search, enabling LLMs to think and reason their way to the most relevant document sections. 
+It performs retrieval in two steps:
+
+- Generate a “Table-of-Contents” tree structure index of documents
+- Perform (agentic) reasoning-based retrieval through tree 
+
+For files with table of contents tree structure can easily be built
+as for files without we LLM reads the file and respecting the logical boundaries it creates nodes 
+based on its content with similar content summarized in single node with nodeid and pageno
+
+Now retrieval
+User Query
+step1 : LLM scans the titles,pages and summarises in context
+step2: reason and select node return thinking +nodelist JSON
+step3: fetch raw pages for selected node_ids
+
+then llm evaluates completeness
+
+if yes answer is generated
+else cross reference follow
+
+
+tree index is created with title,node_id,start_index,end_index and summary
+
+PageIndexRAG- buildtree -> LLM reasons over tree -> retrieve exact sections
+
+The problem with vector RAG :
+Similarity!= relevance
+A chunk about "market conditions " may score higher than the actual
+answer section just because is shares more words with the query
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
